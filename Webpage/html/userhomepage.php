@@ -1,0 +1,159 @@
+<?php
+include(__DIR__."/pagehead.php");
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>SearchBook</title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/searchbook.css">
+</head>
+
+<div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li ><a href="#">Search Book</a></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Edit Information</a></li>
+                    <li><a href="#">Check Loan Status</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+                <div class="vr"></div>
+            </div>
+
+            <div class="vr"></div>
+
+            <div class="col-md-9">
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <form>
+                            <div class="col-md-3">
+                                <div class="dropdown">
+                                    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+                                        data-toggle="dropdown">Search
+                                        by &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="#">ISBN</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="#">Title</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="#">Category</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="#">Author</a>
+                                        </li>
+                                        
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="username" class="form-control" id="floatingInput" placeholder="Search">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <br><br>
+
+                <div clas="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+
+                            <thead id="listhead">
+                                <tr>
+                                    <th id="th1">ISBN</th>
+                                    <th id="th2">Title</th>
+                                    <th id="th3">Category</th>
+                                    <th id="th4">Stock</th>
+                                    <th id="th5">Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td><button type="submit"
+                                            class="w-50 btn btn-sm  btn-warning">&nbsp&nbspLoan&nbsp&nbsp</button></td>
+
+                                </tr>
+                                <tr>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+
+                                </tr>
+                                <tr>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+
+                                </tr>
+                                <tr>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+                                    <td>&nbsp</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="pagelist">
+                        <ul class="pagination">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">8</a></li>
+                            <li><a href="#">9</a></li>
+                            <li><a href="#">10</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
