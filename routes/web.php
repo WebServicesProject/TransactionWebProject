@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +15,36 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', function (){
+    return view('login');
+});
 
-Route::get('/register', [AuthController::class, 'registerForm']);
+Route::get('/register', function (){
+    return view('registration');
+});
 
 Route::post('/register-user',[AuthController::class,'registerUser'])->name('register-user');
 
 Route::post('/login-user',[AuthController::class,'loginUser'])->name('login-user');
 
+Route::get('/logout',[AuthController::class,'logout']);
+
 Route::get('/dashboard',function (){
-   return view('dashboard');
+
+    //prevent /dashboard is used directly without login
+   if(Session::has('userId')){
+       return view('dashboard');
+   }
+   else{
+       return view('login');
+   }
+});
+
+Route::any('/fuzzy-search',[BookController::class,'fuzzySearch'])->name('fuzzy-search');
+
+Route::get('/book-search',function(){
+   return view('book-search');
 });
