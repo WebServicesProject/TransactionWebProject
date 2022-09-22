@@ -9,9 +9,10 @@
         <div class="col-md-5">
             <br>
             <div class="row">
-                <form action="{{route('fuzzy-search')}}" method="POST">
+                <form action="{{route('search')}}" method="POST">
                     @csrf
                     <div class="col-md-9">
+                        <input type="hidden" name="searchBy" value="5"/>
                         <input type="text" class="form-control" id="searchText" name="searchText" placeholder="Search">
                     </div>
                     <div class="col-md-3">

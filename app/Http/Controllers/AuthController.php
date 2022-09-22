@@ -20,7 +20,6 @@ class AuthController extends Controller
 //    }
 
     public function registerUser(Request $request){
-        echo "start registration";
         $request->validate([
             'username'=>'required|unique:users|min:2|max:50',
             'password'=>'required|confirmed',
@@ -28,7 +27,6 @@ class AuthController extends Controller
         ]);
 
         $user = new User();
-//        var_dump($request);
         $user->username = $request->username;
         $user->password = Hash::make($request->password);
         $user->email = $request->email;
@@ -50,9 +48,9 @@ class AuthController extends Controller
         $user = User::where('username', '=', $request->username)->first();
         if($user){
             if(Hash::check($request->password, $user->password)){
-                $request->session()->put('userId', $user->id);
+                $request->session()->put('uid', $user->id);
                 $request->session()->put('username', $user->username);
-                session('username',$user->username);
+
                 return redirect('dashboard');
 //                return view('dashboard',['username'=>$user->username]);
             }else{
@@ -64,7 +62,7 @@ class AuthController extends Controller
     }
 
     public function logout(){
-        if(Session::has('userId')){
+        if(Session::has('uid')){
             Session::flush();
             return redirect('login');
         }

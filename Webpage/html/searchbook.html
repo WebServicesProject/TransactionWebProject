@@ -80,35 +80,17 @@
 
                     <div class="col-md-12">
 
-                        <form>
+                        <form >
                             <div class="col-md-3">
-                                <div class="dropdown">
-                                    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
-                                        data-toggle="dropdown">Search
-                                        by &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation" class="divider"></li>
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="#">ISBN</a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="#">Title</a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="#">Category</a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="#">Author</a>
-                                        </li>
-                                        
-
-                                    </ul>
-                                </div>
+                                <select class="form-select form-select-lg" aria-label=".form-select-lg example">
+                                    <option selected>Search By</option>
+                                    <option value="1">ISBN</option>
+                                    <option value="2">Title</option>
+                                    <option value="3">Category</option>
+                                </select>
                             </div>
                             <div class="col-md-6">
-                                <input type="username" class="form-control" id="floatingInput" placeholder="Search">
+                                <input type="text" class="form-control" id="search-term" placeholder="Search">
                             </div>
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-primary">Submit</button>
