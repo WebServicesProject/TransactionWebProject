@@ -7,15 +7,9 @@
             <div class="alert alert-danger">{{Session::get('fail')}}</div>
         @endif
         @csrf
-{{--        <div class="mb-3 form-outline">--}}
-{{--            <label for="username" class="form-label">Username</label>--}}
-{{--            <input type="text" class="form-control text-center"  name="username" id="username"--}}
-{{--                   value="{{$user->username}}">--}}
-{{--            <span class="text-danger">@error('username') {{$message}} @enderror</span>--}}
-{{--        </div>--}}
             <div class="mb-3 form-outline">
                 <label for="password" class="form-label">Old Password</label>
-                <input type="password" class="form-control text-center"  name="oldPassword" id="password"
+                <input type="password" class="form-control text-center"  name="oldPassword" id="oldPassword"
                        value="">
                 <span class="text-danger">@error('password') {{$message}} @enderror</span>
             </div>

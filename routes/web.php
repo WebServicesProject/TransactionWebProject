@@ -86,3 +86,26 @@ Route::POST('/user/update',[UserController::class,'update'])->name('user-update'
 Route::get('/check-loan',[LoanController::class, 'checkLoanRecords'])->name('check-loan');
 
 Route::get('/renew/{id}',[LoanController::class,'renew'])->name('renew');
+
+Route::view('/contact-us','contact-us');
+
+Route::post('/submit-message', function(Request $request){
+
+    $request->validate([
+        'contactEmail'=>'required|email',
+        'subject'=> 'required',
+        'content'=> 'required'
+    ]);
+
+   $res = DB::table('contact_us')
+       ->insert([
+           'contact_email' => $request->contactEmail,
+           'subject'=> $request->subject,
+           'content'=> $request->content
+       ]);
+    if($res){
+        return back()->with('success', 'Your message has been sent');
+    }else{
+        return back()->with('fail','The message is not sent successfully, please check and send it again!');
+    }
+})->name('submit-message');
