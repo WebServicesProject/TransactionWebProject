@@ -16,7 +16,7 @@ class UserController extends Controller
         //$request validation
         $request->validate([
             'newPassword' => 'required'|'confirmed',
-            'email'=>'required|unique:users|email'
+            'email'=>'required|email'
         ]);
 
         //predefine variable $res
@@ -24,18 +24,35 @@ class UserController extends Controller
 
         //get the current user information by id
         $user = DB::table('users')
-            -> where('id','=',$request->session()->get('userId'))
+            -> where('id','=',$request->session()->get('uid'))
             ->first();
 
-        //Hash oldPassword from request in order to check if it's same as the exist password in database
-        $oldPassword = Hash::make($request->oldPassword);
+        //check if the email from request is unique in database.
+        $email = $request->email;
+        //1. If the email from request is same as the user original email, then jump to next step: check old password
+        if($email == $user->email){
+            goto nextstep;
+        }
+        //2. otherwise check if the changed email is not existed in database in another user
+        else{
+            $userWithNewEmail =  DB::table('users')
+                -> where('email','=',$email)
+                ->get();
 
+            if($userWithNewEmail != null){
+                return back()->withinput()->with('fail', 'The email has been used by another user, please input another one!');
+            }
+        }
         //Check if the oldPassword from request is same as the exist password in database. If yes, allow the user data to
         //be updated, otherwise return the fail message
-        if(Hash::check($user->Password, $oldPassword)){
-            $user->password = Hash::make($request->newPassword);
-            $user->email = $request->email;
-            $res = $user->update();
+        nextstep:
+//        dd($user->password);
+        if(Hash::check($request->oldPassword,$user->password)){
+            $res = DB::table('users')
+                ->where('id','=',$request->session()->get('uid'))
+                ->update([
+                    'password' => Hash::make($request->password),
+                    'email' => $email]);
         }else{
             return back()->withInput()->with('fail','The old password is wrong, please check it!');
         }

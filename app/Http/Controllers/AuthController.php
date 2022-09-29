@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
     //
 
-    public function login(){
-        return view('log-in');
-    }
+//    public function login(){
+//        return view('log-in');
+//    }
 
 //    public function registerForm(){
 //        return view('register');
@@ -33,7 +34,8 @@ class AuthController extends Controller
         $res = $user->save();
 
         if($res){
-            return back()->with('success','You have registered successfully');
+            sleep(1);
+            return redirect('login')->with('success','New user has successfully registered, please sign in')->with('username',$request->username);
         }else{
             return back()->with('fail','Something wrong!');
         }

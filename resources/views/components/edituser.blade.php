@@ -32,7 +32,7 @@
             </div>
             <div class="mb-3 form-outline">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control text-center"  name="email" id="email" value="">
+                <input type="text" class="form-control text-center"  name="email" id="email" value="{{$user->email}}">
                 <span class="text-danger">@error('email') {{$message}} @enderror</span>
             </div>
             <div class="mb-4">

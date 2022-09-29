@@ -28,6 +28,11 @@
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form action="{{route('login-user')}}" method="POST">
                         @csrf
+                        @if(Session::has('success'))
+                            <div class="alert alert-success">{{Session::get('success')}}</div>
+                        @elseif(Session::has('fail'))
+                            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                        @endif
                         <div
                             class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                             <p class="lead fw-normal mb-0 me-3">Sign in</p>
@@ -36,7 +41,11 @@
 
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input type="text" name="username" id="username" class="form-control form-control-lg" value=""/>
+                            @if(Session::has('username'))
+                                <input type="text" name="username" id="username" class="form-control form-control-lg" value="{{Session::get('username')}}"/>
+                            @else
+                                <input type="text" name="username" id="username" class="form-control form-control-lg" value=""/>
+                            @endif
                             <label class="form-label" for="password">Username</label>
                             <span class="text-danger">@error('username') {{$message}} @enderror</span>
                         </div>

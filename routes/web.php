@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,7 @@ Route::post('/register-user',[AuthController::class,'registerUser'])->name('regi
 
 Route::post('/login-user',[AuthController::class,'loginUser'])->name('login-user');
 
-Route::get('/logout',[AuthController::class,'logout']);
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::get('/dashboard',function (){
 
@@ -46,7 +47,7 @@ Route::get('/dashboard',function (){
    else{
        return view('login');
    }
-});
+})->name('dashboard');
 
 Route::any('/search',function(Request $request){
     $bookController = new BookController();
@@ -74,10 +75,14 @@ Route::get('/loan/{bookid}', [BookController::class,'borrow']);
 
 Route::get('/user/edit',function(Request $request){
    $user = DB::table('users')
-       ->where('id','=',$request->session()->get('userId'))
+       ->where('id','=',$request->session()->get('uid'))
        ->first();
 
    return view('useredit',compact('user'));
-});
+})->name('user-edit');
 
 Route::POST('/user/update',[UserController::class,'update'])->name('user-update');
+
+Route::get('/check-loan',[LoanController::class, 'checkLoanRecords'])->name('check-loan');
+
+Route::get('/renew/{id}',[LoanController::class,'renew'])->name('renew');
