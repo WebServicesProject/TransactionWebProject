@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('ISBN',13)->unique();
             $table->string('title');
             $table->string('category');
+            $table->string('image_url');
             $table->integer('quantity');
             $table->timestamps();
         });
