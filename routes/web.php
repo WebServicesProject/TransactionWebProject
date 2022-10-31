@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\UserController;
+use App\MyUtils\GoogleBookApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -40,9 +41,13 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::get('/dashboard',function (){
 
+    $api = new GoogleBookApi('computerscience+mostpopular');
+    $api->setResultSize('3');
+    $imageUrls = $api->getBigImageUrls();
+
     //prevent /dashboard is used directly without login
    if(Session::has('uid')){
-       return view('dashboard');
+       return view('dashboard',compact('imageUrls'));
    }
    else{
        return view('login');
@@ -109,3 +114,10 @@ Route::post('/submit-message', function(Request $request){
         return back()->with('fail','The message is not sent successfully, please check and send it again!');
     }
 })->name('submit-message');
+
+Route::get('/test',function (){
+    $api = new GoogleBookApi('computerscience+mostpopular');
+    $api->setResultSize('3');
+    $imageUrls = $api->getBigImageUrls();
+    return view('dashboard',compact('imageUrls'));
+});
