@@ -38,8 +38,10 @@ class GoogleBookApi{
         $results = $this->getResults();
         foreach ($results as $result){
             $imageUrl = $result->volumeInfo->imageLinks->thumbnail;
-            $imageUrl = str_replace('zoom=1','zoom=10',$imageUrl);
+
+            //reproduce url for bigger image by change zoom magnitude and http-> https
             $imageUrl = str_replace('http','https',$imageUrl);
+            $imageUrl = str_replace('zoom=1','zoom=10',$imageUrl);
             $imageUrls[] = $imageUrl;
         }
         return $imageUrls;

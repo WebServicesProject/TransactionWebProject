@@ -41,7 +41,8 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::get('/dashboard',function (){
 
-    $api = new GoogleBookApi('computerscience+mostpopular');
+    //get the top 3 of books in category "most popular computer science"
+    $api = new GoogleBookApi('computerscience+mostpopular');  //querycondition = "computerscience+mostpopular
     $api->setResultSize('3');
     $imageUrls = $api->getBigImageUrls();
 
@@ -92,7 +93,7 @@ Route::get('/check-loan',[LoanController::class, 'checkLoanRecords'])->name('che
 
 Route::get('/renew/{id}',[LoanController::class,'renew'])->name('renew');
 
-Route::view('/contact-us','contact-us');
+Route::view('/contact-us','contact-us')->name('contact-us');
 
 Route::post('/submit-message', function(Request $request){
 
@@ -106,7 +107,7 @@ Route::post('/submit-message', function(Request $request){
        ->insert([
            'contact_email' => $request->contactEmail,
            'subject'=> $request->subject,
-           'content'=> $request->content
+           'content'=> $request['content']
        ]);
     if($res){
         return back()->with('success', 'Your message has been sent');

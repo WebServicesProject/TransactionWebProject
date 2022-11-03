@@ -20,7 +20,8 @@
     </div>
     <div class="mb-3 form-outline">
         <label for="content" class="form-label">Message</label>
-        <textarea class="form-control" name="content" id="content" form="contactUs"></textarea>
+        <textarea class="form-control" name="content" id="content" form="contactUs" value=""></textarea>
+        <span class="text-danger">@error('content') {{$message}} @enderror</span>
     </div>
     <div class="mb-4" style="margin-top: 2%">
         <button class="btn btn-primary" type="submit">Send</button>
